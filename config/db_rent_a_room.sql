@@ -126,6 +126,32 @@ CREATE TABLE `tenants`(
     FOREIGN KEY(`tenant_room_id`) REFERENCES `rooms`(`room_id`)
 );
 
+CREATE TABLE `rents`(
+    `rent_id` INT(11) NOT NULL AUTO_INCREMENT,
+    `rent_tenant_id` INT(11) NOT NULL,
+    `rent_start_date` DATE NULL,
+    `rent_end_date` DATE NULL,
+    `rent_deposit` DECIMAL(10, 2) NULL,
+    `rent_created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `rent_updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `rent_deleted_at` DATETIME NULL,
+    PRIMARY KEY(`rent_id`),
+    FOREIGN KEY(`rent_tenant_id`) REFERENCES `tenants`(`tenant_id`)
+);
+
+CREATE TABLE `payments`(
+    `payment_id` INT(11) NOT NULL AUTO_INCREMENT,
+    `payment_rent_id` INT(11) NOT NULL,
+    `payment_amount` DECIMAL(10, 2) NOT NULL,
+    `payment_type` enum('rent', 'deposit', 'others') NOT NULL DEFAULT 'rent',
+    `payment_method` enum('cash', 'online') NOT NULL DEFAULT 'cash',
+    `payment_created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `payment_updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `payment_deleted_at` DATETIME NULL,
+    PRIMARY KEY(`payment_id`),
+    FOREIGN KEY(`payment_rent_id`) REFERENCES `rents`(`rent_id`)
+);
+
 INSERT INTO
     `users`(
         `user_name`,

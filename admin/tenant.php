@@ -87,7 +87,6 @@ $result_house = mysqli_query($conn, $sql_house);
                                             </td>
                                             <td>
                                                 <?php
-                                                // SELECT `tenant_id`, `tenant_user_id`, `tenant_room_id`, `tenant_status`, `tenant_created_at`, `tenant_updated_at`, `tenant_deleted_at` FROM `tenants` WHERE 1
                                                 $sql_tenant = "SELECT * FROM `tenants` JOIN `rooms` ON `tenant_room_id` = `room_id` WHERE `room_house_id` = '$house_id' AND `tenant_deleted_at` IS NULL";
                                                 $result_tenant = mysqli_query($conn, $sql_tenant);
                                                 $count_tenant = mysqli_num_rows($result_tenant);
@@ -99,7 +98,7 @@ $result_house = mysqli_query($conn, $sql_house);
                                             </td>
                                             <td>
                                                 <a href="tenant-add.php?id=<?= $house['house_id'] ?>" class="btn btn-sm btn-primary">
-                                                    <i class="fas fa-plus"></i> Add Tenant
+                                                    <i class="fas fa-plus"></i> Update Tenant
                                                 </a>
                                                 <a href="tenant-list.php?id=<?= $house['house_id'] ?>" class="btn btn-sm btn-success">
                                                     <i class="fas fa-list"></i> Tenant List

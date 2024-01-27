@@ -70,3 +70,17 @@ function display_flash_message()
         unset($_SESSION['message']);
     }
 }
+
+function checkTenant($room_id)
+{
+    global $conn;
+
+    $sql = "SELECT * FROM `tenants` WHERE `tenant_deleted_at` IS NULL AND `tenant_room_id` = '$room_id'";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        $tenant = mysqli_fetch_assoc($result);
+        return $tenant;
+    } else {
+        return false;
+    }
+}
