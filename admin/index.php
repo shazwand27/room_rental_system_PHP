@@ -107,6 +107,22 @@
                         <a href="<?= base_url('admin/room.php') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+                <!-- total_outstanding -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-secondary">
+                        <div class="inner">
+
+                            <h3>RM <?= $count['total_outstanding'] ?></h3>
+
+                            <p>Total Outstanding</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <a href="<?= base_url('admin/rental.php') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->
